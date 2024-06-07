@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% block title %}
+
+Menu
+
+{% endblock %}
+
+{% block header %}
+
+
+
+{% endblock %}
+    
+    {% block content %}
+    <ul>
+        {% for menu in menus %}
+       
+        <li>{{menu}}</li>
+    {% endfor %}
+
+        {% for item in menu_items %}
+        <li>{{ item.title }}</li>
+        {% endfor %}
+    </ul>
+  
+{% endblock %}
