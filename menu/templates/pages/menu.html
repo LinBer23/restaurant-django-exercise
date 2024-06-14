@@ -6,22 +6,42 @@ Menu
 
 {% endblock %}
 
-{% block header %}
 
 
-
-{% endblock %}
     
-    {% block content %}
-    <ul>
-        {% for menu in menus %}
-       
-        <li>{{menu}}</li>
-    {% endfor %}
+{% block content %}   
 
-        {% for item in menu_items %}
-        <li>{{ item.title }}</li>
-        {% endfor %}
-    </ul>
-  
+    {% for menus in menu_list %}
+    <p>{{ menus.description }}</p>
+    <p>{{ menus.price }}</p>
+    
+    <h2>{{ menus.name }}</h2>
+    <table>
+        <thead>
+            <tr>
+              <th>{{ menus.name }}</th>          
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>{{ menus.desciption }}</td>
+              <td>{{ menus.price }}</td>
+            </tr>            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>             
+            </tr>
+        </tfoot>  
+    </table>
+
+
+
+
+
+
+
+    
+    {% endfor %}
+ 
 {% endblock %}

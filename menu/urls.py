@@ -1,8 +1,8 @@
+from . import views
 from django.urls import path
-from .views import MenuPageView
+from menu import views
 
-urlpatterns = [
-   
-    path('', MenuPageView.as_view(), name='menu'),
-   
+urlpatterns = [   
+  path('', views.menu, name ='menu'),
+     
 ]

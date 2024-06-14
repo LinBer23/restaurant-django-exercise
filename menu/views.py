@@ -1,31 +1,18 @@
-from django.views.generic import TemplateView
+from django.shortcuts import render
+from rest_framework import viewsets
+from .models import MenusItem
+from .serializers import MenuItemSerializer
 
-class MenuPageView(TemplateView):
-    template_name = "pages/menu.html"
-    
-    def get_context_data(self):
+def menu(request):
+    menu_list = MenusItem.objects.all()
+    context = { 
+        'menu_list': menu_list 
+    }
+    return render( request,
+                   'pages/menu.html',
+                   context )
 
-        menu_items = [
-            {
-                'title': 'Tomato Salad',
-                'category': 'Salad'
-            },
-            {
-                'title': 'Cucumber Salad',
-                'category': 'Salad'
-            },
-            {
-                'title': 'Chocolate Ice Cream',
-                'category': 'Icecream'
-            }
-        ]
+class MenuItemViewSet(viewsets.ModelViewSet):
+    queryset = MenusItem.objects.all()
+    serializer_class = MenuItemSerializer
 
-        return {
-            'menus': {
-                
-                'salat':'Tomato Salad',
-                'salat':'Cucumber Salad',                
-                'ice': 'Chocolate Ice Cream',
-            },
-            'menu_items': menu_items
-        }
