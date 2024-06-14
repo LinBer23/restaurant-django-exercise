@@ -1,8 +1,24 @@
 {% extends 'base.html'%}
+
 {% block title %}
 Reservation
 {% endblock %}
+
 {% block content %}
 
-Reservations
+    <h1>Reservierung</h1>
+    {% for reservation in reservations_list%}
+        {% if reservation.quantity <= 30 %}
+            <p>{{ reservation.name }}</p>
+            <p>{{ reservation.timestamp }}</p>
+            <p>{{ reservation.guests_quantity }}</p>
+        {% else %}
+            <p>Reservierung konnte nicht vorgenommen werden, wählen Sie bitte eine andere Zeit oder einen anderen Tag</p>
+        {% endif %}
+    {% endfor %}
+
+
+
+
+
 {% endblock %}

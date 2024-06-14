@@ -1,5 +1,20 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from rest_framework import viewsets
+from .models import Reservation
+from .serializer import ReservationsSerializer
 
-class ReservationsPageView(TemplateView):
-    template_name = 'pages/reservations.html'
+
+def reservations(request):
+    reservations_list = Reservation.objects.all() 
+    context = {
+        'reservations_list' : reservations_list
+    }
+    return render(
+        request,
+        'pages/reservations.html',
+        context
+    )
+
+class ReservationsViewSet(viewsets.ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationsSerializer
