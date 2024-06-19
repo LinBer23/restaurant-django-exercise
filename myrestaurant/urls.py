@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework import routers
 from menu.views import MenuItemViewSet
 from reservations.views import ReservationsViewSet
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 router = routers.DefaultRouter()
 router.register('menu', MenuItemViewSet)
@@ -31,5 +32,11 @@ urlpatterns = [
     path('menu/', include('menu.urls')),
     path('reservations/', include('reservations.urls')),
     path('orders/', include('orders.urls')),
-    path('api/', include(router.urls))
+
+    path('api/', include(router.urls)),
+
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'),name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    
 ]
